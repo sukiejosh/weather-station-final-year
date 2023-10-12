@@ -262,11 +262,11 @@
 		const Allstations = await stationStore.getStations(userStore.token);
 		console.log(Allstations);
 		if (!Allstations) {
-			router.push({ path: "/login" });
+			router.push({ path: "/" });
 			return;
 		}
 		if (!stationDetails) {
-			router.push({ path: "/login" });
+			router.push({ path: "/" });
 			return;
 		}
 		const d = await stationStore.getAllWeatherData(id as any, 10, "desc");

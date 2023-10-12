@@ -27,7 +27,7 @@
 		const stations = await stationStore.getStations(userStore.token);
 		console.log(stations);
 		if (!stations) {
-			router.push({ path: "/login" });
+			router.push({ path: "/" });
 		}
 	});
 

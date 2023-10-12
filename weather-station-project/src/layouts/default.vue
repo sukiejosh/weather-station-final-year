@@ -38,7 +38,7 @@
 		console.log(stations);
 		if (!stations) {
 			localStorage.removeItem("weather_app_user");
-			router.push({ path: "/login" });
+			router.push({ path: "/" });
 		}
 	});
 
