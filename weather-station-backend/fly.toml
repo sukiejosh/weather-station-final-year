@@ -1,0 +1,37 @@
+# fly.toml app configuration file generated for weather-data-2 on 2023-07-16T15:13:49+01:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = "weather-data-2"
+primary_region = "ams"
+
+[build]
+  build-target = "production"
+
+[env]
+  CLIENT_URL = "http://localhost:5000"
+  COOKIE_SECRET = "dfkhdkjfdf"
+  EMAIL_FROM = "dkfdk@dfnfdksdsfdj.com"
+  JWT_ACCESS_EXPIRATION_MINUTES = "43200"
+  JWT_REFRESH_EXPIRATION_DAYS = "43200"
+  JWT_RESET_PASSWORD_EXPIRATION_MINUTES = "10"
+  JWT_SECRET = "thisisasamplesecret"
+  JWT_VERIFY_EMAIL_EXPIRATION_MINUTES = "10"
+  SMTP_HOST = "email-server"
+  SMTP_PASSWORD = "mnxkcjxcjk"
+  SMTP_PORT = "1025"
+  SMTP_USERNAME = "cxbcjhxbcxc"
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 1
+  processes = ["app"]
+
+[[services]]
+  [services.concurrency]
+    hard_limit = 25
+    soft_limit = 20

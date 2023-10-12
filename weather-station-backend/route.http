@@ -1,0 +1,103 @@
+@baseurl=http://localhost:3001
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NGIzNWNhNjUyZTBiOGNiMDc4YjMyZmUiLCJpYXQiOjE2ODk1MDkyNTMsImV4cCI6MTY4OTUxMTA1MywidHlwZSI6ImFjY2VzcyJ9.H9__Tq73XWn5gzVKLpxGdUmprQaEjiDwgu0hY2BlNCE
+
+
+//Create a user
+POST {{baseurl}}/auth/register HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Jos",
+    "email": "k@k.com",
+    "password": "12345678@l"
+}
+
+### Login a user
+POST {{baseurl}}/auth/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "k@k.com",
+    "password": "12345678@l"
+}
+
+### Register a station
+POST {{baseurl}}/stations/create HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "name": "Station 1",
+    "lang" : 565756645.3546545343454,
+    "lat" : 565756645.3546545343454
+}
+
+### Update a station
+PATCH {{baseurl}}/stations/64b29d3cd1ba3df15ff8b34b HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "name": "Station 24",
+    "lang" : "665756645.3546545343454",
+    "lat" : "0903756645.3546545343454"
+}
+
+
+### Get a station
+GET {{baseurl}}/stations/64b3882b2af2053c380251c0 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "name": "Station 24",
+    "lang" : "665756645.3546545343454",
+    "lat" : "0903756645.3546545343454"
+}
+
+
+### Get all stations
+GET {{baseurl}}/stations HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+
+### Generate a save weather data token
+POST {{baseurl}}/auth/generate-token HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "days": "7",
+    "type":"saveWeather",
+    "stationId": "64b3882b2af2053c380251c0"
+}
+
+
+### Generate a live weather data token
+POST {{baseurl}}/auth/generate-token HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "days": "7",
+    "type":"liveWeather",
+    "stationId": "64b35cb752e0b8cb078b3305"
+}
+
+
+### Save weather data
+POST {{baseurl}}/weather/64b3882b2af2053c380251c0?token=6eclygU9bO HTTP/1.1
+Content-Type: application/json
+
+{
+    "temp": "1200",
+    "dhtTemp": "120",
+    "humidity": "2000"
+}
+
+
+### GEt weather data
+GET {{baseurl}}/weather/64b3882b2af2053c380251c0?limit=10&sort=asc&page=1 HTTP/1.1
+Content-Type: application/json
+
