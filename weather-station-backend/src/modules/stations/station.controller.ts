@@ -66,7 +66,7 @@ export const getStations = catchAsync(async (req: Request, res: Response) => {
   }
 
   // @ts-ignore
-  const filter = { ...pick(req.query, ['name', 'identifier', 'lang', 'lat']), owner: userId };
+  const filter = { ...pick(req.query, ['name', 'identifier', 'lang', 'lat']) };
   const options: IOptions = { ...pick(req.query, ['sort', 'limit', 'page', 'projection']), lean: true }
   const stations = await stationService.queryStations(filter, options);
   res.send(stations);
@@ -78,7 +78,7 @@ export const getWeatherData = catchAsync(async (req: Request, res: Response) => 
   const owner = req.user?.id;
   let s;
   if (typeof stationId === 'string') {
-    s = await stationService.getStationById(new mongoose.Types.ObjectId(stationId));   
+    s = await stationService.getStationById(new mongoose.Types.ObjectId(stationId));
     if (!s) {
       throw new ApiError(httpStatus.NOT_FOUND, 'Station not found');
     }

@@ -55,14 +55,16 @@ router.beforeEach(async (to, from) => {
         return tokens?.access?.token
     }
 
-    let isAuthenticated = !!token()
-    console.log('isAuthenticated', isAuthenticated)
-    if (
-        !isAuthenticated && to.name !== 'login'
-    ) {
-        // redirect the user to the login page
-        return { name: 'login' }
-    }
+    // let isAuthenticated = !!token()
+    // console.log('isAuthenticated', isAuthenticated)
+    // if (
+    //     !isAuthenticated && to.name !== 'login'
+    // ) {
+    //     // redirect the user to the login page
+    //     return { name: 'login' }
+    // }
+
+    return true
 })
 
 app.use(router)

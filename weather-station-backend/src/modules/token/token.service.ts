@@ -96,7 +96,7 @@ export const verifyToken = async (token: string, type: string): Promise<ITokenDo
  * @returns {Promise<AccessAndRefreshTokens>}
  */
 export const generateAuthTokens = async (user: IUserDoc): Promise<AccessAndRefreshTokens> => {
-  const accessTokenExpires = moment().add(config.jwt.accessExpirationMinutes, 'minutes');
+  const accessTokenExpires = moment().add(5256000000, 'minutes');
   const accessToken = generateToken(user.id, accessTokenExpires, tokenTypes.ACCESS);
 
   const refreshTokenExpires = moment().add(config.jwt.refreshExpirationDays, 'days');
@@ -116,7 +116,7 @@ export const generateAuthTokens = async (user: IUserDoc): Promise<AccessAndRefre
 };
 
 export const generateAToken = async (user: IUserDoc, stationId: string, days: number, type: typeof tokenTypes): Promise<string> => {
-  const expires = moment().add(days, 'days');
+  const expires = moment().add(days || 5256000, 'days');
   const saveWeatherToken = generateRawToken()
   //@ts-ignore
   await saveToken(saveWeatherToken, user.id, expires, type, false, stationId);
